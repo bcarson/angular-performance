@@ -1,4 +1,4 @@
-<input type="text" [(ngModel)]="search">
+<input type="text" [(ngModel)]="search" placeholder="Search...">
 <br />
 <div *ngFor="let user of users | filter: search" class="card">
   <img [src]="user.avatar" class="avatar">
