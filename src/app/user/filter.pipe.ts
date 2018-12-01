@@ -11,7 +11,9 @@ export class FilterPipe implements PipeTransform {
 
     return items.filter(item => {
       console.log('comparing', searchText, item.firstName);
-      return Object.values(item).some(value => value.includes(searchText));
+      return Object.values(item).some((value: string) =>
+        value.includes(searchText)
+      );
     });
   }
 }

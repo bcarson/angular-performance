@@ -11,6 +11,6 @@ export class UserComponent implements OnInit {
   constructor(private fakeUserService: FakeUserService) {}
 
   ngOnInit() {
-    this.users = this.fakeUserService.getUsers(25);
+    this.users = this.fakeUserService.getUsers(1000);
   }
 }
