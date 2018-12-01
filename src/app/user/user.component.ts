@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { FakeUserService } from './fake-user.service';
 
 @Component({
@@ -6,11 +8,20 @@ import { FakeUserService } from './fake-user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
-  public users;
+export class UserComponent {
+  public users = this.fakeUserService.getUsers(1000);
+  public filteredUsers = this.users;
+  public searchText = new BehaviorSubject<string>('').pipe(debounceTime(200));
   constructor(private fakeUserService: FakeUserService) {}
 
-  ngOnInit() {
-    this.users = this.fakeUserService.getUsers(12);
+  filterUsers(searchText: string) {
+    if (!searchText) this.filteredUsers = this.users;
+    else
+      this.filteredUsers = this.users.filter(user => {
+        console.log('comparing', searchText, user.firstName);
+        return Object.values(user).some((value: string) =>
+          value.toLowerCase().includes(searchText.toLowerCase())
+        );
+      });
   }
 }

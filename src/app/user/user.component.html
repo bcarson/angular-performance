@@ -1,8 +1,2 @@
-<input type="text" [(ngModel)]="search" placeholder="Search...">
-<br />
-<div *ngFor="let user of users | filter: search" class="card">
-  <img [src]="user.avatar" class="avatar">
-  <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-  <span>{{ user.email }}</span>
-
-</div>
+<app-user-input (search)="filterUsers($event)"></app-user-input>
+<app-user-list [users]="filteredUsers"></app-user-list>
