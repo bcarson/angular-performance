@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PerfumeModule } from 'perfume.js/angular';
@@ -22,7 +23,12 @@ const perfumeConfig = {
     UserInputComponent,
     UserListComponent,
   ],
-  imports: [CommonModule, FormsModule, PerfumeModule.forRoot(perfumeConfig)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    PerfumeModule.forRoot(perfumeConfig),
+    ScrollingModule,
+  ],
   exports: [UserComponent, UserInputComponent, UserListComponent],
   providers: [FakeUserService],
 })

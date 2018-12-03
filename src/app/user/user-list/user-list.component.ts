@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent {
-  @Input() users: any[];
+  @Input() users$: any[];
 
   trackByFn(index: number, item: any): any {
     return item.id;

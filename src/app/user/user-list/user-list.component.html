@@ -1,5 +1,15 @@
-<div *ngFor="let user of users | async; trackBy: trackByFn" class="card">
+<!-- <div *ngFor="let user of users | async; trackBy: trackByFn" class="card">
   <img [src]="user.avatar" class="avatar">
   <h3>{{ user.firstName }} {{ user.lastName }}</h3>
   <span>{{ user.email }}</span>
+</div> -->
+
+<div *ngIf="users$ | async as users">
+  <cdk-virtual-scroll-viewport class="list-container list-group item animate" itemSize="25">
+    <div *cdkVirtualFor="let user of users; trackBy: trackByFn" class="card">
+      <img [src]="user.avatar" class="avatar">
+      <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+      <span>{{ user.email }}</span>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>
