@@ -13,9 +13,10 @@ export class FakeUserService {
 
     for (var i = 0; i < n; i++) {
       const user = {
+        id: i.toString(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
-        avatar: faker.image.avatar(),
+        // avatar: faker.image.avatar(),
         email: faker.internet.email(),
       };
 

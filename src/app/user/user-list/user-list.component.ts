@@ -8,4 +8,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class UserListComponent {
   @Input() users: any[];
+
+  trackByFn(index: number, item: any): any {
+    return item.id;
+  }
 }
