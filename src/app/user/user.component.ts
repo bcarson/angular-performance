@@ -9,19 +9,21 @@ import { FakeUserService } from './fake-user.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  public users = this.fakeUserService.getUsers(1000);
+  public users = this.fakeUserService.getUsers(10000);
   public filteredUsers = this.users;
-  public searchText = new BehaviorSubject<string>('').pipe(debounceTime(200));
+  // public searchText = new BehaviorSubject<string>('').pipe(debounceTime(200));
   constructor(private fakeUserService: FakeUserService) {}
 
   filterUsers(searchText: string) {
-    if (!searchText) this.filteredUsers = this.users;
-    else
+    if (!searchText) {
+      this.filteredUsers = this.users;
+    } else {
       this.filteredUsers = this.users.filter(user => {
-        console.log('comparing', searchText, user.firstName);
+        // console.log('comparing', searchText, user.firstName);
         return Object.values(user).some((value: string) =>
           value.toLowerCase().includes(searchText.toLowerCase())
         );
       });
+    }
   }
 }
