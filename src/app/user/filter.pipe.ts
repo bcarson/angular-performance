@@ -10,7 +10,6 @@ export class FilterPipe implements PipeTransform {
     if (!searchText) return items;
 
     return items.filter(item => {
-      console.log('comparing', searchText, item.firstName);
       return Object.values(item).some((value: string) =>
         value.toLowerCase().includes(searchText.toLowerCase())
       );
